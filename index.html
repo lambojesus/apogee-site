@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
+<title>Apogee Stores LLC | An innovative retail firm.</title>
+<meta name="description" content="Apogee Stores is an ecommerce, technology and manufacturing firm that builds the world's best specialty wheel, tire and battery retailers and brands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --white: #fff;
+  --ink: #000;
+  --graphite: #1a1a1a;
+  --ember: #6366f1;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Outfit', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #000000;
+  color-scheme: dark;
+}
+
+body {
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--sans);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ===================== NAVIGATION ===================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 clamp(24px, 4vw, 64px);
+  height: 110px;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.5s ease, backdrop-filter 0.5s ease;
+}
+
+.nav.scrolled {
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 110;
+}
+
+.nav-logo-img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.nav-link {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  transition: opacity 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--ember);
+  transition: width 0.4s var(--ease-out-expo);
+}
+
+.nav-link:hover { opacity: 0.7; }
+.nav-link:hover::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px;
+  background: none;
+  border: none;
+  position: relative;
+  z-index: 110;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #fff;
+  transition: all 0.4s var(--ease-out-expo);
+  transform-origin: center;
+}
+
+/* Full-screen mobile menu overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: #000000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 clamp(32px, 8vw, 64px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s var(--ease-out-expo), visibility 0.5s;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.mobile-menu-link {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #ffffff;
+  padding: 24px 0;
+  border-bottom: 1px solid #1a1a1a;
+  display: block;
+  transition: color 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo), color 0.3s ease;
+}
+
+.mobile-menu.open .mobile-menu-link {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu.open .mobile-menu-link:nth-child(1) { transition-delay: 0.1s; }
+.mobile-menu.open .mobile-menu-link:nth-child(2) { transition-delay: 0.18s; }
+.mobile-menu.open .mobile-menu-link:nth-child(3) { transition-delay: 0.26s; }
+
+.mobile-menu-link:active { color: var(--ember); }
+
+.mobile-menu-footer {
+  position: absolute;
+  bottom: 40px;
+  left: clamp(32px, 8vw, 64px);
+  right: clamp(32px, 8vw, 64px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #1a1a1a;
+  padding-top: 20px;
+}
+
+.mobile-menu-copy {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: #555;
+}
+
+.mobile-menu-site {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  color: #555;
+}
+
+/* ===================== HERO ===================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 clamp(24px, 4vw, 64px);
+  padding-top: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #000000;
+}
+
+.hero-split {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(20px, 4vw, 60px);
+  max-width: 1400px;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+/* Wireframe wheel animation */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel-container {
+  width: clamp(380px, 38vw, 620px);
+  height: clamp(380px, 38vw, 620px);
+  position: relative;
+  animation: wheelSpin 25s linear infinite;
+}
+
+@keyframes wheelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.wheel-container svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: clamp(0.5rem, 0.9vw, 0.78rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  white-space: nowrap;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--ember);
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(3.2rem, 8vw, 7.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 36px;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--ember);
+}
+
+.hero-sub {
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.75;
+  color: #fff;
+  max-width: 580px;
+  margin-bottom: 48px;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--graphite);
+  transition: border-color 0.4s ease, gap 0.4s var(--ease-out-expo);
+  cursor: pointer;
+}
+
+.hero-cta:hover { border-color: var(--ember); gap: 22px; }
+
+.hero-cta svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.hero-cta:hover svg { transform: translateX(4px); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  right: clamp(24px, 4vw, 64px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-scroll-text {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+  writing-mode: vertical-rl;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: var(--graphite);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--ember);
+  animation: scrollPulse 2.4s var(--ease-out-expo) infinite;
+}
+
+@keyframes scrollPulse {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+/* ===================== SECTIONS ===================== */
+.section {
+  padding: clamp(80px, 12vh, 160px) clamp(24px, 4vw, 64px);
+  position: relative;
+}
+
+.thesis { border-top: 1px solid var(--graphite); }
+
+.thesis-inner {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(40px, 6vw, 120px);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.thesis-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #666;
+  padding-top: 8px;
+}
+
+.thesis-heading {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.25;
+  color: #fff;
+  margin-bottom: 36px;
+  max-width: 700px;
+}
+
+.thesis-heading em { font-style: italic; color: var(--ember); }
+
+.thesis-body {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #ddd;
+  max-width: 600px;
+  margin-bottom: 56px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--graphite);
+  border: 1px solid var(--graphite);
+  max-width: 700px;
+}
+
+.stat {
+  background: #000;
+  padding: clamp(24px, 3vw, 40px);
+}
+
+.stat-number {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-number .stat-accent { color: var(--ember); }
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #777;
+  line-height: 1.5;
+}
+
+/* ===================== PORTFOLIO ===================== */
+.portfolio { border-top: 1px solid var(--graphite); }
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: 1400px;
+  margin: 0 auto clamp(48px, 6vh, 80px);
+}
+
+.portfolio-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.portfolio-title em { font-style: italic; color: var(--ember); }
+
+.portfolio-count {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.portfolio-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--graphite);
+  border: 1px solid var(--graphite);
+}
+
+.portfolio-card {
+  background: #000;
+  padding: clamp(36px, 4.5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(440px, 52vh, 620px);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.5s ease;
+}
+
+.portfolio-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.portfolio-card:nth-child(1)::before { background: radial-gradient(ellipse at 30% 70%, rgba(99, 102, 241, 0.07) 0%, transparent 70%); }
+.portfolio-card:nth-child(2)::before { background: radial-gradient(ellipse at 70% 30%, rgba(99, 102, 241, 0.06) 0%, transparent 70%); }
+.portfolio-card:nth-child(3)::before { background: radial-gradient(ellipse at 40% 40%, rgba(99, 102, 241, 0.06) 0%, transparent 70%); }
+.portfolio-card:nth-child(4)::before { background: radial-gradient(ellipse at 60% 60%, rgba(99, 102, 241, 0.07) 0%, transparent 70%); }
+
+.portfolio-card:hover::before { opacity: 1; }
+.portfolio-card:hover { background: #050505; }
+
+.card-top { position: relative; z-index: 1; }
+
+.card-logo {
+  height: clamp(200px, 24vw, 320px);
+  width: auto;
+  max-width: 90%;
+  display: block;
+  margin: 0 auto 32px auto;
+  opacity: 0.9;
+  filter: grayscale(100%) brightness(1.3);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.portfolio-card:hover .card-logo {
+  opacity: 1;
+  filter: grayscale(0%) brightness(1);
+}
+
+.card-category {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-category::before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ember);
+  opacity: 0.7;
+}
+
+.card-name {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.card-desc {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: #bbb;
+  max-width: 440px;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+  padding-top: 32px;
+}
+
+.card-url {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: #777;
+  border-bottom: 1px solid #222;
+  padding-bottom: 4px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.portfolio-card:hover .card-url { color: #ccc; border-color: #555; }
+
+.card-arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, transform 0.4s var(--ease-out-expo);
+}
+
+.card-arrow svg { width: 18px; height: 18px; color: #666; transition: color 0.3s ease; }
+.portfolio-card:hover .card-arrow { border-color: var(--ember); transform: translate(2px, -2px); }
+.portfolio-card:hover .card-arrow svg { color: var(--ember); }
+
+/* ===================== ABOUT ===================== */
+.about { border-top: 1px solid var(--graphite); }
+
+.about-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 8vw, 160px);
+  align-items: start;
+}
+
+.about-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+.about-heading {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.about-heading em { font-style: italic; color: var(--ember); }
+
+.about-body {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.85;
+  color: #ddd;
+}
+
+.about-body p + p { margin-top: 24px; }
+
+.about-right { position: relative; padding-top: 40px; }
+
+.about-accolade {
+  padding: 36px 40px;
+  border: 1px solid var(--graphite);
+  background: #000;
+}
+
+.about-accolade-number {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--ember);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.about-accolade-text {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+  line-height: 1.6;
+}
+
+/* ===================== CONTACT ===================== */
+.contact { border-top: 1px solid var(--graphite); text-align: center; }
+
+.contact-inner { max-width: 700px; margin: 0 auto; }
+
+.contact-heading {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.contact-heading em { font-style: italic; color: var(--ember); }
+
+.contact-sub {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #ccc;
+  margin-bottom: 56px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 20px 40px;
+  border: 1px solid #222;
+  transition: border-color 0.4s ease, background 0.4s ease, gap 0.4s var(--ease-out-expo);
+}
+
+.contact-link:hover { border-color: var(--ember); background: rgba(99, 102, 241, 0.06); gap: 22px; }
+.contact-link svg { width: 16px; height: 16px; transition: transform 0.4s var(--ease-out-expo); }
+.contact-link:hover svg { transform: translateX(3px); }
+
+/* ===================== FOOTER ===================== */
+.footer {
+  padding: 40px clamp(24px, 4vw, 64px);
+  border-top: 1px solid var(--graphite);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #555;
+}
+
+.footer-right { display: flex; gap: 32px; }
+
+.footer-link {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover { color: #fff; }
+
+/* ===================== ANIMATIONS ===================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+
+.hero .hero-content .hero-eyebrow,
+.hero .hero-content .hero-headline,
+.hero .hero-content .hero-sub,
+.hero .hero-content .hero-cta {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroEnter 1s var(--ease-out-expo) forwards;
+}
+
+.hero .hero-content .hero-eyebrow { animation-delay: 0.3s; }
+.hero .hero-content .hero-headline { animation-delay: 0.5s; }
+.hero .hero-content .hero-sub { animation-delay: 0.7s; }
+.hero .hero-content .hero-cta { animation-delay: 0.9s; }
+
+@keyframes heroEnter { to { opacity: 1; transform: translateY(0); } }
+
+.hero-scroll { opacity: 0; animation: heroEnter 0.8s var(--ease-out-expo) 1.3s forwards; }
+
+.portfolio-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo), background 0.5s ease;
+}
+
+.portfolio-card.visible { opacity: 1; transform: translateY(0); }
+.portfolio-card:nth-child(2).visible { transition-delay: 0.12s; }
+.portfolio-card:nth-child(3).visible { transition-delay: 0.24s; }
+.portfolio-card:nth-child(4).visible { transition-delay: 0.36s; }
+
+.section-line {
+  position: absolute;
+  top: 0;
+  left: clamp(24px, 4vw, 64px);
+  width: 1px;
+  height: 0;
+  background: var(--graphite);
+  transition: height 1.2s var(--ease-out-expo);
+}
+
+.section-line.drawn { height: 80px; }
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--ember);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.15s ease;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+}
+
+.cursor-dot.active { opacity: 1; transform: translate(-50%, -50%) scale(3); }
+
+@media (hover: hover) { .portfolio-card { cursor: none; } }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .nav {
+    height: 80px;
+    padding-top: 0;
+  }
+
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .mobile-menu { display: flex; }
+
+  .hero {
+    min-height: 100vh;
+    padding-bottom: 48px;
+    padding-top: 90px;
+    justify-content: flex-start;
+  }
+
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-visual {
+    order: -1;
+    padding-bottom: 0;
+    padding-top: 10px;
+    justify-content: center;
+  }
+
+  .wheel-container {
+    width: 55vw;
+    height: 55vw;
+    max-width: 280px;
+    max-height: 280px;
+  }
+
+  .hero-headline { font-size: 2.8rem; line-height: 1.1; }
+  .hero-eyebrow { font-size: 0.42rem; letter-spacing: 0.1em; overflow: hidden; text-overflow: ellipsis; }
+  .hero-sub { font-size: 0.95rem; }
+  .thesis-inner { grid-template-columns: 1fr; gap: 24px; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .portfolio-card { min-height: auto; padding: 36px 24px; }
+  .card-logo { height: 140px; max-width: 80%; margin: 0 auto 24px auto; }
+  .card-name { font-size: 1.6rem; }
+  .card-category { font-size: 0.75rem; }
+  .card-desc { font-size: 0.95rem; }
+  .card-url { font-size: 0.75rem; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-right { padding-top: 0; }
+  .about-heading { font-size: 1.8rem; }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+  .contact-heading { font-size: 2.2rem; }
+  .footer { flex-direction: column; gap: 20px; text-align: center; }
+  .hero-scroll { display: none; }
+  .section { padding: 60px 20px; }
+}
+
+@media (max-width: 480px) {
+  .nav { padding: 0 16px; }
+  .nav-logo-img { height: 40px; }
+  .hero { padding: 0 16px; padding-bottom: 40px; padding-top: 80px; }
+  .hero-headline { font-size: 2.2rem; }
+  .hero-eyebrow { font-size: 0.38rem; letter-spacing: 0.08em; }
+  .hero-sub { font-size: 0.9rem; }
+  .wheel-container { width: 60vw; height: 60vw; max-width: 250px; max-height: 250px; }
+  .section { padding: 48px 16px; }
+  .card-logo { height: 120px; }
+  .card-name { font-size: 1.4rem; }
+  .stats { grid-template-columns: 1fr; }
+  .portfolio-title { font-size: 1.8rem; }
+  .portfolio-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .mobile-menu-link { font-size: 1.8rem; padding: 20px 0; }
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open { overflow: hidden; }
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <img src="https://cdn.prod.website-files.com/66a3d7478fabf15efa8d1afc/66aec7fba37d1a6f59a7fd90_Apogee-Stores-Logo-001%20FINAL%20WHITE-p-500.png" alt="Apogee Stores" class="nav-logo-img">
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#portfolio" class="nav-link">Portfolio</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Full-screen mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-links">
+    <a href="#portfolio" class="mobile-menu-link">Portfolio</a>
+    <a href="#about" class="mobile-menu-link">About</a>
+    <a href="#contact" class="mobile-menu-link">Contact</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <span class="mobile-menu-copy">&copy; 2026 Apogee Stores LLC</span>
+    <span class="mobile-menu-site">apogeestores.com</span>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-split">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Inc. 5000 // No. 400 Fastest Growing U.S. Private Company</div>
+      <h1 class="hero-headline">At Apogee,<br>boring is <em>sexy.</em></h1>
+      <p class="hero-sub">An ecommerce, technology and manufacturing firm building the world's best specialty wheel, tire and battery retailers and brands. Without raising outside capital.</p>
+      <a href="#portfolio" class="hero-cta">
+        <span>View portfolio</span>
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 14L14 4M14 4H6M14 4V12"/></svg>
+      </a>
+    </div>
+    <div class="hero-visual">
+      <div class="wheel-container">
+        <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer tire -->
+          <circle cx="250" cy="250" r="245" stroke="#1a1a1a" stroke-width="1"/>
+          <circle cx="250" cy="250" r="238" stroke="#222" stroke-width="1"/>
+          <!-- Tire tread blocks -->
+          <circle cx="250" cy="250" r="230" stroke="#1a1a1a" stroke-width="14" stroke-dasharray="18 8"/>
+          <circle cx="250" cy="250" r="220" stroke="#222" stroke-width="1"/>
+          <!-- Tire sidewall detail -->
+          <circle cx="250" cy="250" r="210" stroke="#1a1a1a" stroke-width="0.5" stroke-dasharray="3 6"/>
+          <!-- Wheel lip outer -->
+          <circle cx="250" cy="250" r="195" stroke="#333" stroke-width="2"/>
+          <circle cx="250" cy="250" r="190" stroke="#2a2a2a" stroke-width="1"/>
+          <!-- Rim channel -->
+          <circle cx="250" cy="250" r="182" stroke="#222" stroke-width="0.5"/>
+          <!-- Main spoke ring outer -->
+          <circle cx="250" cy="250" r="175" stroke="#444" stroke-width="1.5"/>
+          <!-- 10-spoke aggressive pattern (FUEL style deep dish) -->
+          <!-- Spoke pair 1 -->
+          <path d="M250 80 L235 170 L250 175 L265 170 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 2 -->
+          <path d="M370 105 L305 175 L312 188 L325 180 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 3 -->
+          <path d="M420 250 L330 240 L325 255 L330 268 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 4 -->
+          <path d="M370 395 L310 320 L298 328 L305 340 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 5 -->
+          <path d="M250 420 L240 330 L255 330 L265 335 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 6 -->
+          <path d="M130 395 L195 325 L205 335 L198 345 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 7 -->
+          <path d="M80 250 L170 260 L172 248 L168 235 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Spoke pair 8 -->
+          <path d="M130 105 L192 178 L183 190 L170 180 Z" stroke="#444" stroke-width="1.2" fill="none"/>
+          <!-- Window cutouts between spokes -->
+          <path d="M268 82 L325 110 L310 172 L270 168 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M380 118 L418 195 L332 230 L318 185 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M425 270 L400 355 L322 315 L335 268 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M355 405 L285 430 L270 340 L310 325 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M225 425 L148 400 L190 330 L240 335 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M120 385 L82 305 L168 270 L190 318 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M78 230 L100 145 L175 185 L165 235 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <path d="M140 98 L220 78 L230 165 L188 175 Z" stroke="#2a2a2a" stroke-width="0.8" fill="none"/>
+          <!-- Inner spoke ring -->
+          <circle cx="250" cy="250" r="100" stroke="#444" stroke-width="1.5"/>
+          <circle cx="250" cy="250" r="92" stroke="#333" stroke-width="0.8"/>
+          <!-- Milled spoke face detail lines -->
+          <line x1="250" y1="92" x2="250" y2="158" stroke="#333" stroke-width="0.5"/>
+          <line x1="310" y1="115" x2="290" y2="165" stroke="#333" stroke-width="0.5"/>
+          <line x1="345" y1="185" x2="310" y2="210" stroke="#333" stroke-width="0.5"/>
+          <line x1="345" y1="310" x2="305" y2="290" stroke="#333" stroke-width="0.5"/>
+          <line x1="305" y1="380" x2="285" y2="335" stroke="#333" stroke-width="0.5"/>
+          <line x1="250" y1="408" x2="250" y2="342" stroke="#333" stroke-width="0.5"/>
+          <line x1="190" y1="380" x2="210" y2="335" stroke="#333" stroke-width="0.5"/>
+          <line x1="155" y1="310" x2="195" y2="290" stroke="#333" stroke-width="0.5"/>
+          <line x1="155" y1="185" x2="195" y2="210" stroke="#333" stroke-width="0.5"/>
+          <line x1="190" y1="115" x2="210" y2="165" stroke="#333" stroke-width="0.5"/>
+          <!-- Hub cap -->
+          <circle cx="250" cy="250" r="60" stroke="#555" stroke-width="1.5"/>
+          <circle cx="250" cy="250" r="52" stroke="#444" stroke-width="1"/>
+          <!-- Hub cap inner detail -->
+          <circle cx="250" cy="250" r="38" stroke="#333" stroke-width="0.8"/>
+          <circle cx="250" cy="250" r="28" stroke="#444" stroke-width="1.2"/>
+          <!-- Center bore -->
+          <circle cx="250" cy="250" r="14" stroke="#6366f1" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="250" cy="250" r="6" fill="#6366f1" opacity="0.35"/>
+          <!-- Lug nuts (6-lug truck pattern) -->
+          <circle cx="250" cy="210" r="5" stroke="#555" stroke-width="1.2" fill="none"/>
+          <circle cx="284" cy="230" r="5" stroke="#555" stroke-width="1.2" fill="none"/>
+          <circle cx="284" cy="270" r="5" stroke="#555" stroke-width="1.2" fill="none"/>
+          <circle cx="250" cy="290" r="5" stroke="#555" stroke-width="1.2" fill="none"/>
+          <circle cx="216" cy="270" r="5" stroke="#555" stroke-width="1.2" fill="none"/>
+          <circle cx="216" cy="230" r="5" stroke="#555" stroke-width="1.2" fill="none"/>
+          <!-- Lug nut centers -->
+          <circle cx="250" cy="210" r="1.5" fill="#555"/>
+          <circle cx="284" cy="230" r="1.5" fill="#555"/>
+          <circle cx="284" cy="270" r="1.5" fill="#555"/>
+          <circle cx="250" cy="290" r="1.5" fill="#555"/>
+          <circle cx="216" cy="270" r="1.5" fill="#555"/>
+          <circle cx="216" cy="230" r="1.5" fill="#555"/>
+          <!-- Rivets on outer spoke ring -->
+          <circle cx="250" cy="160" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="328" cy="195" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="338" cy="305" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="275" cy="355" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="185" cy="340" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="162" cy="240" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="195" cy="165" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="305" cy="165" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="340" cy="255" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="225" cy="355" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="162" cy="300" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+          <circle cx="305" cy="345" r="2.5" stroke="#444" stroke-width="0.8" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-text">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- Thesis -->
+<section class="section thesis">
+  <div class="section-line" id="thesisLine"></div>
+  <div class="thesis-inner">
+    <div class="thesis-label reveal">Our Thesis</div>
+    <div class="thesis-content">
+      <h2 class="thesis-heading reveal reveal-delay-1">We find underserved specialty markets and <em>build digital brands</em> to better serve customers.</h2>
+      <p class="thesis-body reveal reveal-delay-2">Since 2014, Apogee has followed a simple but relentless playbook: identify niches where the existing online experience fails its customers, then build the user experience, content, education and customer service platform to become indispensable. No outside capital. No shortcuts. Just unwavering focus on being the best every day.</p>
+      <div class="stats reveal reveal-delay-3">
+        <div class="stat">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Portfolio<br>Companies</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number"><span class="stat-accent">#</span>400</div>
+          <div class="stat-label">Inc. 5000<br>Ranking</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">10<span class="stat-accent">+</span></div>
+          <div class="stat-label">Years<br>Operating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section class="section portfolio" id="portfolio">
+  <div class="portfolio-header reveal">
+    <h2 class="portfolio-title">Our <em>Companies</em></h2>
+    <span class="portfolio-count">04 Companies</span>
+  </div>
+  <div class="portfolio-grid">
+    <a href="https://www.golfcarttiresupply.com" target="_blank" rel="noopener" class="portfolio-card">
+      <div class="card-top">
+        <img src="https://cdn.prod.website-files.com/66a3d7478fabf15efa8d1b45/66b01e4c2605a390da87356d_Golf-Cart-Tire-Supply-Tile-BW.png" alt="Golf Cart Tire Supply" class="card-logo">
+        <div class="card-category">Retail</div>
+        <h3 class="card-name">Golf Cart Tire Supply</h3>
+        <p class="card-desc">The largest and highest rated eCommerce destination in the worldwide golf cart aftermarket. An indispensable industry resource, built on technology, media, and service.</p>
+      </div>
+      <div class="card-bottom">
+        <span class="card-url">golfcarttiresupply.com</span>
+        <div class="card-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></div>
+      </div>
+    </a>
+    <a href="https://www.lawnmowertiresupply.com" target="_blank" rel="noopener" class="portfolio-card">
+      <div class="card-top">
+        <img src="https://cdn.prod.website-files.com/66a3d7478fabf15efa8d1b45/66b01fe714f21affe699fc7d_Lawn-Mower-Tire-Supply-Tile-BW.png" alt="Lawn Mower Tire Supply" class="card-logo">
+        <div class="card-category">Retail</div>
+        <h3 class="card-name">Lawn Mower Tire Supply</h3>
+        <p class="card-desc">The widest selection of quality brand name lawn mower tires and riding mower parts anywhere online. The definitive eCommerce destination in the lawn and garden marketplace.</p>
+      </div>
+      <div class="card-bottom">
+        <span class="card-url">lawnmowertiresupply.com</span>
+        <div class="card-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></div>
+      </div>
+    </a>
+    <a href="https://www.trexgolfcart.com" target="_blank" rel="noopener" class="portfolio-card">
+      <div class="card-top">
+        <img src="https://cdn.prod.website-files.com/66a3d7478fabf15efa8d1b45/66b01ec41f29c527ad47d6bc_TREX-Golf-Cart-Tile.png" alt="TREX Golf Cart" class="card-logo">
+        <div class="card-category">Brand</div>
+        <h3 class="card-name">TREX Golf Cart Accessories</h3>
+        <p class="card-desc">One of the fastest growing golf cart accessory brands, dedicated to quality-only manufacturing. Completely unique designs produced for the modern golf carts of today.</p>
+      </div>
+      <div class="card-bottom">
+        <span class="card-url">trexgolfcart.com</span>
+        <div class="card-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></div>
+      </div>
+    </a>
+    <a href="https://www.golfcartsellers.com" target="_blank" rel="noopener" class="portfolio-card">
+      <div class="card-top">
+        <img src="https://cdn.prod.website-files.com/66a3d7478fabf15efa8d1b45/66b0210eb6c15f850921e87e_Golf-Cart-Sellers-Tile-BW.png" alt="Golf Cart Sellers" class="card-logo">
+        <div class="card-category">Marketplace</div>
+        <h3 class="card-name">Golf Cart Sellers</h3>
+        <p class="card-desc">The number one online source to buy, sell and research your next golf cart. A clean, user-friendly marketplace custom-engineered for people, not algorithms.</p>
+      </div>
+      <div class="card-bottom">
+        <span class="card-url">golfcartsellers.com</span>
+        <div class="card-arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section about" id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="about-label reveal">About Apogee</div>
+      <h2 class="about-heading reveal reveal-delay-1">We build <em>category-defining</em> retailers in markets others ignore.</h2>
+      <div class="about-body reveal reveal-delay-2">
+        <p>Apogee Stores LLC is a cutting-edge leader in the specialty tire, battery and accessories industry. Ranked <a href="https://www.inc.com/profile/apogee-stores" target="_blank" rel="noopener" style="color: #6366f1; text-decoration: none; border-bottom: 1px solid rgba(99,102,241,0.3); transition: border-color 0.3s ease;">#400</a> among the prestigious Inc. 5000 fastest growing private companies in America, our commitment to excellence and innovation is reflected in our diverse portfolio of niche websites, each catering to specific needs and preferences of its amazing and passionate customers.</p>
+        <p>Since establishing Golf Cart Tire Supply in 2014, Apogee has set the standard for high-quality golf cart tires, wheels, and accessories retailing online. The company has expanded methodically launching the wheel and tire brand TREX in 2016, engineering Golf Cart Sellers (the world's first p2p Golf Cart marketplace) in 2022, and now recognizing the demand and missing link for a quality retailer of lawn mower tires, we are launching Lawn Mower Tire Supply in 2026, further pushing limits in the specialty tire space.</p>
+        <p>Our unwavering dedication to customer satisfaction and product quality drives our success and fuels our growth. Every decision we make is filtered through one lens: does this make us more important to the people we serve?</p>
+      </div>
+    </div>
+    <div class="about-right reveal reveal-delay-2">
+      <div class="about-accolade">
+        <div class="about-accolade-number">#400</div>
+        <div class="about-accolade-text">Inc. 5000 Fastest Growing<br>Private Companies in America</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section contact" id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-heading reveal">Get in <em>touch.</em></h2>
+    <p class="contact-sub reveal reveal-delay-1">Partnerships. Press. Anything.</p>
+    <a href="https://www.apogeestores.com/contact" class="contact-link reveal reveal-delay-2">
+      <span>Contact us</span>
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-left">&copy; 2026 Apogee Stores LLC. All Rights Reserved.</div>
+  <div class="footer-right">
+    <a href="#portfolio" class="footer-link">Portfolio</a>
+    <a href="#about" class="footer-link">About</a>
+    <a href="#contact" class="footer-link">Contact</a>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile menu
+  var toggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var menuOpen = false;
+
+  toggle.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    var spans = toggle.querySelectorAll('span');
+
+    if (menuOpen) {
+      mobileMenu.classList.add('open');
+      document.body.classList.add('menu-open');
+      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+    } else {
+      mobileMenu.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      spans[0].style.transform = 'none';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = 'none';
+    }
+  });
+
+  // Close menu on link click
+  mobileMenu.querySelectorAll('.mobile-menu-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      menuOpen = false;
+      mobileMenu.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      var spans = toggle.querySelectorAll('span');
+      spans[0].style.transform = 'none';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = 'none';
+    });
+  });
+
+  // Scroll reveals
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .portfolio-card').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  var thesisLine = document.getElementById('thesisLine');
+  if (thesisLine) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) thesisLine.classList.add('drawn');
+      });
+    }, { threshold: 0.1 }).observe(thesisLine.parentElement);
+  }
+
+  // Custom cursor
+  var cursorDot = document.getElementById('cursorDot');
+  if (!('ontouchstart' in window)) {
+    document.addEventListener('mousemove', function(e) {
+      cursorDot.style.left = e.clientX + 'px';
+      cursorDot.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('.portfolio-card').forEach(function(card) {
+      card.addEventListener('mouseenter', function() { cursorDot.classList.add('active'); });
+      card.addEventListener('mouseleave', function() { cursorDot.classList.remove('active'); });
+    });
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
