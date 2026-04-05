@@ -1336,50 +1336,12 @@ body.menu-open { overflow: hidden; }
   <div class="contact-inner">
     <h2 class="contact-heading reveal">Get in <em>touch.</em></h2>
     <p class="contact-sub reveal reveal-delay-1">Partnerships. Press. Anything.</p>
-    <button class="contact-link reveal reveal-delay-2" id="contactBtn">
+    <a href="mailto:info@apogeestores.com?subject=Contact from apogeestores.com" class="contact-link reveal reveal-delay-2">
       <span>Contact us</span>
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
-    </button>
+    </a>
   </div>
 </section>
-
-<!-- Contact Modal -->
-<div class="modal-overlay" id="contactModal">
-  <div class="modal">
-    <button class="modal-close" id="modalClose">
-      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1L13 13M13 1L1 13"/></svg>
-    </button>
-    <div id="contactForm">
-      <h3 class="modal-title">Let's <em>connect.</em></h3>
-      <p class="modal-subtitle">We'll get back to you within 24 hours.</p>
-      <form id="theForm" action="https://formspree.io/f/xreooady" method="POST">
-        <div class="form-group">
-          <label class="form-label" for="name">Name</label>
-          <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">Email</label>
-          <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="message">Message</label>
-          <textarea class="form-input" id="message" name="message" placeholder="" required></textarea>
-        </div>
-        <button type="submit" class="form-submit">
-          <span>Send message</span>
-          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13L13 1M13 1H5M13 1V9"/></svg>
-        </button>
-      </form>
-    </div>
-    <div class="form-success" id="formSuccess">
-      <div class="form-success-icon">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10L8 14L16 6"/></svg>
-      </div>
-      <div class="form-success-text">Message sent.</div>
-      <p class="form-success-sub">We'll be in touch soon.</p>
-    </div>
-  </div>
-</div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -1465,72 +1427,6 @@ body.menu-open { overflow: hidden; }
     document.querySelectorAll('.portfolio-card').forEach(function(card) {
       card.addEventListener('mouseenter', function() { cursorDot.classList.add('active'); });
       card.addEventListener('mouseleave', function() { cursorDot.classList.remove('active'); });
-    });
-  }
-
-  // Contact modal
-  var contactBtn = document.getElementById('contactBtn');
-  var contactModal = document.getElementById('contactModal');
-  var modalClose = document.getElementById('modalClose');
-
-  function openModal() {
-    contactModal.classList.add('open');
-    document.body.classList.add('menu-open');
-  }
-
-  function closeModal() {
-    contactModal.classList.remove('open');
-    document.body.classList.remove('menu-open');
-  }
-
-  contactBtn.addEventListener('click', openModal);
-  modalClose.addEventListener('click', closeModal);
-  contactModal.addEventListener('click', function(e) {
-    if (e.target === contactModal) closeModal();
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && contactModal.classList.contains('open')) closeModal();
-  });
-
-  // Form submission - native POST with redirect handling
-  var theForm = document.getElementById('theForm');
-  if (theForm) {
-    theForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var submitBtn = theForm.querySelector('.form-submit span');
-      var originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
-
-      var data = JSON.stringify({
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-      });
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://formspree.io/f/xreooady');
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.setRequestHeader('Accept', 'application/json');
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200 || xhr.status === 201 || xhr.status === 202) {
-            theForm.style.display = 'none';
-            document.querySelector('.modal-title').style.display = 'none';
-            document.querySelector('.modal-subtitle').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-            theForm.reset();
-          } else {
-            submitBtn.textContent = 'Error (' + xhr.status + '). Try again.';
-            setTimeout(function() { submitBtn.textContent = originalText; }, 4000);
-          }
-        }
-      };
-      xhr.onerror = function() {
-        submitBtn.textContent = originalText;
-        window.open('mailto:info@apogeestores.com?subject=Contact from apogeestores.com&body=' + encodeURIComponent(document.getElementById('message').value), '_self');
-      };
-      xhr.send(data);
     });
   }
 
