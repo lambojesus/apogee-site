@@ -1493,7 +1493,7 @@ body.menu-open { overflow: hidden; }
     if (e.key === 'Escape' && contactModal.classList.contains('open')) closeModal();
   });
 
-  // Form submission
+  // Form submission - native POST with redirect handling
   var theForm = document.getElementById('theForm');
   if (theForm) {
     theForm.addEventListener('submit', function(e) {
@@ -1502,27 +1502,35 @@ body.menu-open { overflow: hidden; }
       var originalText = submitBtn.textContent;
       submitBtn.textContent = 'Sending...';
 
-      var data = new FormData(theForm);
-
-      fetch('https://formspree.io/f/xreooady', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(function(response) {
-        if (response.ok) {
-          theForm.style.display = 'none';
-          document.querySelector('.modal-title').style.display = 'none';
-          document.querySelector('.modal-subtitle').style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
-          theForm.reset();
-        } else {
-          submitBtn.textContent = 'Error. Try again.';
-          setTimeout(function() { submitBtn.textContent = originalText; }, 3000);
-        }
-      }).catch(function() {
-        submitBtn.textContent = originalText;
-        window.open('mailto:info@apogeestores.com?subject=Contact from apogeestores.com&body=' + encodeURIComponent(data.get('message')), '_self');
+      var data = JSON.stringify({
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
       });
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'https://formspree.io/f/xreooady');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.setRequestHeader('Accept', 'application/json');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200 || xhr.status === 201 || xhr.status === 202) {
+            theForm.style.display = 'none';
+            document.querySelector('.modal-title').style.display = 'none';
+            document.querySelector('.modal-subtitle').style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+            theForm.reset();
+          } else {
+            submitBtn.textContent = 'Error (' + xhr.status + '). Try again.';
+            setTimeout(function() { submitBtn.textContent = originalText; }, 4000);
+          }
+        }
+      };
+      xhr.onerror = function() {
+        submitBtn.textContent = originalText;
+        window.open('mailto:info@apogeestores.com?subject=Contact from apogeestores.com&body=' + encodeURIComponent(document.getElementById('message').value), '_self');
+      };
+      xhr.send(data);
     });
   }
 
@@ -1536,5 +1544,6 @@ body.menu-open { overflow: hidden; }
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
