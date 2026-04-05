@@ -7,6 +7,7 @@
 <meta name="color-scheme" content="dark">
 <title>Apogee Stores LLC | An innovative retail firm.</title>
 <meta name="description" content="Apogee Stores is an ecommerce, technology and manufacturing firm that builds the world's best specialty wheel, tire and battery retailers and brands.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='50%25' y='95%25' text-anchor='middle' font-family='Times New Roman,Times,serif' font-size='38' font-weight='bold' fill='%23000'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -759,6 +760,173 @@ a { color: inherit; text-decoration: none; }
 
 .footer-link:hover { color: #fff; }
 
+/* ===================== CONTACT MODAL ===================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: #0a0a0a;
+  border: 1px solid #1a1a1a;
+  width: 100%;
+  max-width: 520px;
+  padding: clamp(32px, 5vw, 56px);
+  position: relative;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.modal-overlay.open .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: 1px solid #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.modal-close:hover { border-color: var(--ember); }
+
+.modal-close svg { width: 14px; height: 14px; color: #888; }
+
+.modal-title {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.modal-title em { font-style: italic; color: var(--ember); }
+
+.modal-subtitle {
+  font-size: 1.05rem;
+  color: #fff;
+  margin-bottom: 36px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px 18px;
+  background: #000;
+  border: 1px solid #222;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s ease;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.form-input:focus { border-color: var(--ember); }
+
+.form-input::placeholder { color: #333; }
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 16px 32px;
+  background: none;
+  border: 1px solid #222;
+  cursor: pointer;
+  transition: border-color 0.4s ease, background 0.4s ease, gap 0.4s var(--ease-out-expo);
+  margin-top: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.form-submit:hover {
+  border-color: var(--ember);
+  background: rgba(99, 102, 241, 0.06);
+  gap: 18px;
+}
+
+.form-submit svg { width: 14px; height: 14px; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.form-success-icon {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--ember);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.form-success-icon svg { width: 20px; height: 20px; color: var(--ember); }
+
+.form-success-text {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.form-success-sub {
+  font-size: 0.9rem;
+  color: #666;
+}
+
 /* ===================== ANIMATIONS ===================== */
 .reveal {
   opacity: 0;
@@ -1168,12 +1336,50 @@ body.menu-open { overflow: hidden; }
   <div class="contact-inner">
     <h2 class="contact-heading reveal">Get in <em>touch.</em></h2>
     <p class="contact-sub reveal reveal-delay-1">Partnerships. Press. Anything.</p>
-    <a href="https://www.apogeestores.com/contact" class="contact-link reveal reveal-delay-2">
+    <button class="contact-link reveal reveal-delay-2" id="contactBtn">
       <span>Contact us</span>
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 12L12 4M12 4H6M12 4V10"/></svg>
-    </a>
+    </button>
   </div>
 </section>
+
+<!-- Contact Modal -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1L13 13M13 1L1 13"/></svg>
+    </button>
+    <div id="contactForm">
+      <h3 class="modal-title">Let's <em>connect.</em></h3>
+      <p class="modal-subtitle">We'll get back to you within 24 hours.</p>
+      <form id="theForm" action="https://formspree.io/f/xreooady" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="name">Name</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Message</label>
+          <textarea class="form-input" id="message" name="message" placeholder="" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          <span>Send message</span>
+          <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 13L13 1M13 1H5M13 1V9"/></svg>
+        </button>
+      </form>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="form-success-icon">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10L8 14L16 6"/></svg>
+      </div>
+      <div class="form-success-text">Message sent.</div>
+      <p class="form-success-sub">We'll be in touch soon.</p>
+    </div>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -1261,6 +1467,53 @@ body.menu-open { overflow: hidden; }
       card.addEventListener('mouseleave', function() { cursorDot.classList.remove('active'); });
     });
   }
+
+  // Contact modal
+  var contactBtn = document.getElementById('contactBtn');
+  var contactModal = document.getElementById('contactModal');
+  var modalClose = document.getElementById('modalClose');
+
+  function openModal() {
+    contactModal.classList.add('open');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeModal() {
+    contactModal.classList.remove('open');
+    document.body.classList.remove('menu-open');
+  }
+
+  contactBtn.addEventListener('click', openModal);
+  modalClose.addEventListener('click', closeModal);
+  contactModal.addEventListener('click', function(e) {
+    if (e.target === contactModal) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && contactModal.classList.contains('open')) closeModal();
+  });
+
+  // Form submission
+  var theForm = document.getElementById('theForm');
+  theForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(theForm);
+
+    fetch(theForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response) {
+      if (response.ok) {
+        document.getElementById('contactForm').querySelector('form').style.display = 'none';
+        document.getElementById('contactForm').querySelector('.modal-title').style.display = 'none';
+        document.getElementById('contactForm').querySelector('.modal-subtitle').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      }
+    }).catch(function() {
+      window.location.href = 'mailto:info@apogeestores.com?subject=Contact from apogeestores.com&body=' + encodeURIComponent(formData.get('message'));
+    });
+  });
 
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
