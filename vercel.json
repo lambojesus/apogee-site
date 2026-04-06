@@ -1,12 +1,12 @@
 {
   "redirects": [
-    { "source": "/projects/golf-cart-tire-supply", "destination": "/", "permanent": true },
-    { "source": "/projects/lawn-mower-tire-supply", "destination": "/", "permanent": true },
-    { "source": "/projects/trex-golf-cart", "destination": "/", "permanent": true },
-    { "source": "/projects/golf-cart-sellers", "destination": "/", "permanent": true },
+    { "source": "/projects/golf-cart-tire-supply", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/lawn-mower-tire-supply", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/trex-golf-cart", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/golf-cart-sellers", "destination": "/#portfolio", "permanent": true },
     { "source": "/about", "destination": "/#about", "permanent": true },
     { "source": "/contact", "destination": "/#contact", "permanent": true },
-    { "source": "/projects/:path*", "destination": "/", "permanent": true },
-    { "source": "/categories/:path*", "destination": "/", "permanent": true }
+    { "source": "/projects/:path*", "destination": "/#portfolio", "permanent": true },
+    { "source": "/categories/:path*", "destination": "/#portfolio", "permanent": true }
   ]
 }
