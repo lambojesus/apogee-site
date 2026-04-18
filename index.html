@@ -269,24 +269,49 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-eyebrow {
-  font-family: var(--mono);
-  font-size: clamp(0.5rem, 0.9vw, 0.78rem);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ember);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
   display: flex;
-  align-items: center;
-  gap: 16px;
-  white-space: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
 }
 
-.hero-eyebrow::before {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: var(--ember);
+.eyebrow-top {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.eyebrow-rank {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  color: var(--ember);
+  letter-spacing: -0.015em;
+  margin-top: 2px;
+}
+
+.eyebrow-numero {
+  font-style: normal;
+  font-size: 0.72em;
+  margin-right: 0.08em;
+  vertical-align: 0.08em;
+  letter-spacing: 0;
+}
+
+.eyebrow-sub {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 300;
+  color: #888;
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+  line-height: 1.3;
 }
 
 .hero-headline {
@@ -1036,7 +1061,10 @@ textarea.form-input {
   }
 
   .hero-headline { font-size: 2.8rem; line-height: 1.1; }
-  .hero-eyebrow { font-size: 0.42rem; letter-spacing: 0.1em; overflow: hidden; text-overflow: ellipsis; }
+  .hero-eyebrow { margin-bottom: 24px; gap: 4px; }
+  .eyebrow-top { font-size: 0.62rem; letter-spacing: 0.24em; }
+  .eyebrow-rank { font-size: 1.85rem; }
+  .eyebrow-sub { font-size: 0.72rem; }
   .hero-sub { font-size: 0.95rem; }
   .thesis-inner { grid-template-columns: 1fr; gap: 24px; }
   .portfolio-grid { grid-template-columns: 1fr; }
@@ -1061,7 +1089,10 @@ textarea.form-input {
   .nav-logo-img { height: 40px; }
   .hero { padding: 0 16px; padding-bottom: 40px; padding-top: 80px; }
   .hero-headline { font-size: 2.2rem; }
-  .hero-eyebrow { font-size: 0.38rem; letter-spacing: 0.08em; }
+  .hero-eyebrow { margin-bottom: 20px; gap: 3px; }
+  .eyebrow-top { font-size: 0.56rem; letter-spacing: 0.2em; }
+  .eyebrow-rank { font-size: 1.65rem; }
+  .eyebrow-sub { font-size: 0.68rem; }
   .hero-sub { font-size: 0.9rem; }
   .wheel-container { width: 60vw; height: 60vw; max-width: 250px; max-height: 250px; }
   .section { padding: 48px 16px; }
@@ -1114,7 +1145,11 @@ body.menu-open { overflow: hidden; }
   <div class="hero-bg"></div>
   <div class="hero-split">
     <div class="hero-content">
-      <div class="hero-eyebrow">Inc. 5000 // No. 400 Fastest Growing U.S. Private Company</div>
+      <div class="hero-eyebrow">
+        <div class="eyebrow-top">Inc. 5000</div>
+        <div class="eyebrow-rank"><span class="eyebrow-numero">№</span>400</div>
+        <div class="eyebrow-sub">Fastest Growing U.S. Private Company</div>
+      </div>
       <h1 class="hero-headline">At Apogee,<br>boring is <em>sexy.</em></h1>
       <p class="hero-sub">An ecommerce, technology and manufacturing firm building the world's best specialty wheel, tire and battery retailers and brands. Without raising outside capital.</p>
       <a href="#portfolio" class="hero-cta">
