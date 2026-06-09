@@ -1,12 +1,26 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/projects/golf-cart-tire-supply", "destination": "/#portfolio", "permanent": true },
-    { "source": "/projects/lawn-mower-tire-supply", "destination": "/#portfolio", "permanent": true },
-    { "source": "/projects/trex-golf-cart", "destination": "/#portfolio", "permanent": true },
-    { "source": "/projects/golf-cart-sellers", "destination": "/#portfolio", "permanent": true },
-    { "source": "/about", "destination": "/#about", "permanent": true },
-    { "source": "/contact", "destination": "/#contact", "permanent": true },
-    { "source": "/projects/:path*", "destination": "/#portfolio", "permanent": true },
-    { "source": "/categories/:path*", "destination": "/#portfolio", "permanent": true }
+    { "source": "/projects/golf-cart-tire-supply", "destination": "/portfolio", "permanent": true },
+    { "source": "/projects/lawn-mower-tire-supply", "destination": "/portfolio", "permanent": true },
+    { "source": "/projects/trex-golf-cart", "destination": "/portfolio", "permanent": true },
+    { "source": "/projects/golf-cart-sellers", "destination": "/portfolio", "permanent": true },
+    { "source": "/projects/:path*", "destination": "/portfolio", "permanent": true },
+    { "source": "/categories/:path*", "destination": "/portfolio", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/favicon-192.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, must-revalidate" }
+      ]
+    }
   ]
 }
