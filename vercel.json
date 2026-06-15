@@ -1,13 +1,17 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
-    { "source": "/projects/golf-cart-tire-supply", "destination": "/portfolio", "permanent": true },
-    { "source": "/projects/lawn-mower-tire-supply", "destination": "/portfolio", "permanent": true },
-    { "source": "/projects/trex-golf-cart", "destination": "/portfolio", "permanent": true },
-    { "source": "/projects/golf-cart-sellers", "destination": "/portfolio", "permanent": true },
-    { "source": "/projects/:path*", "destination": "/portfolio", "permanent": true },
-    { "source": "/categories/:path*", "destination": "/portfolio", "permanent": true }
+    { "source": "/portfolio", "destination": "/#portfolio", "permanent": true },
+    { "source": "/portfolio.html", "destination": "/#portfolio", "permanent": true },
+    { "source": "/about", "destination": "/#about", "permanent": true },
+    { "source": "/about.html", "destination": "/#about", "permanent": true },
+    { "source": "/contact", "destination": "/#contact", "permanent": true },
+    { "source": "/contact.html", "destination": "/#contact", "permanent": true },
+    { "source": "/projects/golf-cart-tire-supply", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/lawn-mower-tire-supply", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/trex-golf-cart", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/golf-cart-sellers", "destination": "/#portfolio", "permanent": true },
+    { "source": "/projects/:path*", "destination": "/#portfolio", "permanent": true },
+    { "source": "/categories/:path*", "destination": "/#portfolio", "permanent": true }
   ],
   "headers": [
     {
