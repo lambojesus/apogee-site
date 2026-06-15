@@ -21,9 +21,28 @@
       ]
     },
     {
+      "source": "/favicon-96.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, must-revalidate" }
+      ]
+    },
+    {
       "source": "/favicon-192.png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=604800, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/favicon-512.png",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, must-revalidate" },
+        { "key": "Content-Type", "value": "application/manifest+json" }
       ]
     }
   ]
