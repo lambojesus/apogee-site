@@ -1,6 +1,6 @@
 /* ============================================================
    Apogee Stores / Shared site script
-   v3.0 / multi-page architecture
+   v3.3 / single-page
    Selectors that don't exist on a given page are no-ops.
    ============================================================ */
 
@@ -74,19 +74,6 @@
     // Older browsers: just show everything
     document.querySelectorAll('.reveal, .portfolio-card').forEach(function (el) {
       el.classList.add('visible');
-    });
-  }
-
-  // Custom cursor dot on portfolio cards (desktop only, no touch)
-  var cursorDot = document.getElementById('cursorDot');
-  if (cursorDot && !('ontouchstart' in window)) {
-    document.addEventListener('mousemove', function (e) {
-      cursorDot.style.left = e.clientX + 'px';
-      cursorDot.style.top = e.clientY + 'px';
-    });
-    document.querySelectorAll('.portfolio-card').forEach(function (card) {
-      card.addEventListener('mouseenter', function () { cursorDot.classList.add('active'); });
-      card.addEventListener('mouseleave', function () { cursorDot.classList.remove('active'); });
     });
   }
 
