@@ -1,6 +1,6 @@
 /* ============================================================
    Apogee Stores / Shared site stylesheet
-   v3.6 / single-page
+   v3.61 / single-page
    ============================================================ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -213,7 +213,8 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: clamp(20px, 4vw, 60px);
-  max-width: 1400px;
+  /* No max-width, on purpose (v3.61). The hero spans the window like the nav, so the
+     headline stays under the logo and the wheel holds its place on wide screens. */
 }
 
 .hero-content { max-width: 650px; }
