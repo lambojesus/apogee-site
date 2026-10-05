@@ -1,6 +1,6 @@
 /* ============================================================
    Apogee Stores / Shared site stylesheet
-   v3.3 / single-page
+   v3.5 / single-page
    ============================================================ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -552,11 +552,12 @@ a { color: inherit; text-decoration: none; }
   transition: opacity 0.6s ease;
 }
 
+/* Hover glow follows each card's category color, so this list must track card order:
+   1 Golf Cart Tire Supply (Retail, ember) / 2 TREX (Brand, leaf) / 3 LithiumBatteryZ (Retail, ember) / 4 Golf Cart Sellers (Marketplace, sky) */
 .portfolio-card:nth-child(1)::before { background: radial-gradient(ellipse at 30% 70%, rgba(99, 102, 241, 0.07) 0%, transparent 70%); }
-.portfolio-card:nth-child(2)::before { background: radial-gradient(ellipse at 70% 30%, rgba(99, 102, 241, 0.06) 0%, transparent 70%); }
-.portfolio-card:nth-child(3)::before { background: radial-gradient(ellipse at 40% 40%, rgba(74, 222, 128, 0.07) 0%, transparent 70%); }
+.portfolio-card:nth-child(2)::before { background: radial-gradient(ellipse at 70% 30%, rgba(74, 222, 128, 0.07) 0%, transparent 70%); }
+.portfolio-card:nth-child(3)::before { background: radial-gradient(ellipse at 40% 40%, rgba(99, 102, 241, 0.06) 0%, transparent 70%); }
 .portfolio-card:nth-child(4)::before { background: radial-gradient(ellipse at 60% 60%, rgba(56, 189, 248, 0.07) 0%, transparent 70%); }
-.portfolio-card:nth-child(5)::before { background: radial-gradient(ellipse at 50% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 70%); }
 
 .portfolio-card:hover::before { opacity: 1; }
 .portfolio-card:hover { background: #050505; }
@@ -577,6 +578,17 @@ a { color: inherit; text-decoration: none; }
 .portfolio-card:hover .card-logo {
   opacity: 1;
   filter: grayscale(0%) brightness(1);
+}
+
+/* Wide wordmark logo (LithiumBatteryZ). Letterboxed inside the same logo zone
+   as the tile logos so the card copy stays aligned across the row, and capped
+   in width so it carries the same visual weight as its neighbors. The higher
+   resting brightness lifts the red half of the mark to a readable grey. */
+.card-logo.wordmark {
+  width: 100%;
+  max-width: clamp(230px, 27vw, 360px);
+  object-fit: contain;
+  filter: grayscale(100%) brightness(2.6);
 }
 
 .card-category {
@@ -659,27 +671,6 @@ a { color: inherit; text-decoration: none; }
 .card-arrow svg { width: 18px; height: 18px; color: #666; transition: color 0.3s ease; }
 .portfolio-card:hover .card-arrow { border-color: var(--ember); transform: translate(2px, -2px); }
 .portfolio-card:hover .card-arrow svg { color: var(--ember); }
-
-/* Featured full-width card (5th company) */
-.portfolio-card.featured { grid-column: 1 / -1; min-height: clamp(300px, 32vh, 400px); }
-
-.portfolio-card.featured .card-top {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.8fr) 1.2fr;
-  column-gap: clamp(32px, 5vw, 88px);
-  align-items: center;
-}
-
-.portfolio-card.featured .card-logo {
-  grid-row: 1 / span 3;
-  grid-column: 1;
-  width: 100%;
-  max-width: 480px;
-  height: auto;
-  margin: 0;
-}
-
-.portfolio-card.featured .card-desc { max-width: 560px; }
 
 /* ===================== ABOUT ===================== */
 .about { border-top: 1px solid var(--graphite); }
@@ -867,7 +858,6 @@ a { color: inherit; text-decoration: none; }
 .portfolio-card:nth-child(2).visible { transition-delay: 0.12s; }
 .portfolio-card:nth-child(3).visible { transition-delay: 0.24s; }
 .portfolio-card:nth-child(4).visible { transition-delay: 0.36s; }
-.portfolio-card:nth-child(5).visible { transition-delay: 0.48s; }
 
 .section-line {
   position: absolute;
@@ -913,8 +903,6 @@ a { color: inherit; text-decoration: none; }
   .thesis-inner { grid-template-columns: 1fr; gap: 24px; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .portfolio-card { min-height: auto; padding: 36px 24px; }
-  .portfolio-card.featured .card-top { display: block; }
-  .portfolio-card.featured .card-logo { width: 100%; max-width: 420px; height: auto; margin: 0 auto 28px auto; }
   .card-logo { height: 220px; max-width: 90%; margin: 0 auto 28px auto; }
   .card-name { font-size: 1.6rem; }
   .card-category { font-size: 0.75rem; }
@@ -945,7 +933,7 @@ a { color: inherit; text-decoration: none; }
   .page-header { padding: 110px 16px 48px; }
   .page-title { font-size: 2.1rem; }
   .card-logo { height: 180px; }
-  .portfolio-card.featured .card-logo { max-width: 360px; }
+  .card-logo.wordmark { max-width: 205px; }
   .card-name { font-size: 1.4rem; }
   .stats { grid-template-columns: 1fr; }
   .portfolio-title { font-size: 1.8rem; }
